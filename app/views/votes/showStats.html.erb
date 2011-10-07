@@ -1,0 +1,36 @@
+<html>
+<h1 align="center"> <div id="banner">Admin Statistics Page</div></h1>  </br></br></br>
+<body>
+<%@users=User.all%>
+
+   <div id="recent">
+  <table border="1px solid green " cellspacing="4" align="center"  >
+
+    <th> User Name</th>
+    <th> No. of Posts Created</th>
+    <th> Total no. of Votes </th>
+    <th>Delete User</th>
+
+    </tr>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.userName%></td>
+          <td><%= user.posts.count %> </td>
+          <%@posts=user.posts.all%>
+                <%@sum=0%>
+          <% @posts.each do |post| %>
+              <%if post.postId==nil%>
+                  <%(@sum+=post.votes.count)%>
+              <%end%>
+          <%end%>
+          <td><%=@sum%></td>
+          <b><td><%=link_to'Destroy',users_destroy_path(:id =>user.id)%></td></b></br>
+        </tr>
+    <% end %>
+  </table>
+  </div>
+</body>
+</html>
+<p align="center"><%=link_to'Home Page',votes_showHome_path%> |
+<%=link_to'Sign Up',new_user_path%></p> </br>
+

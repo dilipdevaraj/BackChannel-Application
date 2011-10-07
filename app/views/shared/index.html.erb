@@ -1,0 +1,71 @@
+<html>
+<head>
+</head>
+<body>
+
+<div id="banner">Live Question Tool: CSC517</div><br/>
+<div style = "text-align: center;">
+
+  <%= form_tag  "posts/search", :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %> <br/>
+    <%= radio_button_tag :search_by, 1, false %>Search by Post
+   	<%= radio_button_tag :search_by, 2, false %>Search By User<br/>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+
+ <!-- &lt;!&ndash;<form action="posts/search" method="post">&ndash;&gt;
+  <input type="text" size="30"/>
+ <input type="submit" value="Submit"/>::
+-->
+
+
+<%= link_to 'Post a New Question', :controller => 'posts' ,:action => 'new'  %>
+
+ <% @posts.each do |post| %>
+     <%if(session[:current_user_id]!=nil)%>
+      <%if(post.user_name).eql?(Login.find_by_id(session[:current_user_id]).user_name)
+%>
+      <p class="question c5 stale " align="left">
+        <b><%= post.user_name %></b>:
+        <%= post.description %><br/><br/>
+     <%= link_to 'Show', post %>
+     <%= link_to 'Edit', edit_post_path(post) %>
+     <%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %>
+
+     <b align="right"><%= link_to 'Reply', :controller => 'logins',:action => 'index'%></b>
+      </p>
+
+     <%else%>
+     <p class="question c5 stale" align="left">
+        <b><%= post.user_name %></b>:
+        <%= post.description %> <br/><br/>
+       <b align="right"><%= link_to 'Reply', :controller => 'logins',:action => 'index'%></b>
+      </p>
+   <%end%>
+         <%else%>
+          <p class="question c5 stale " align="left">
+        <b><%= post.user_name %></b>:
+        <%= post.description %> <br/><br/>
+       <b align="right"><%= link_to 'Reply', :controller => 'logins' ,:action => 'index'%></b>
+      </p>
+     <%end%>
+ <% end %>
+    <br/>
+
+ <div style = "text-align: center;">
+
+ </div>
+
+ </form>
+</div> <br/>
+
+
+</body>
+
+
+</html>
+
+<%= link_to 'Sign In', :controller => 'logins' ,:action => 'index'  %>

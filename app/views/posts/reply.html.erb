@@ -1,0 +1,15 @@
+<H1><div id="banner" align="center">Reply</div></H1>
+<%= form_for(:post, :url => 'addReply') do |f| %>
+
+    <div class="field" align="center">
+    <%= hidden_field_tag :postId, @postid  %>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="actions" align="center">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<p align="center"><%= link_to 'Back', posts_path %></p>

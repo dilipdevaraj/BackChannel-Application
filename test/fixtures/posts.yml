@@ -1,0 +1,26 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+onepost:
+  id: 1
+  user_id: 1
+  description: Post1
+  postId: nil
+
+twopost:
+  id: 2
+  user_id: 2
+  description: Post2
+  postId: nil
+
+onereply:
+  id: 3
+  user_id: 2
+  description: Reply1
+  postId: 1
+
+tworeply:
+  id: 4
+  user_id: 2
+  description: Reply2
+  postId: 2
+

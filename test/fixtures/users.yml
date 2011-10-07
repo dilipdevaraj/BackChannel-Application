@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id : 1
+  userName: dilip
+  email: dilip@abc.com
+  user_type: Admin
+  encrypted_password: "123456"
+  salt: 1
+
+two:
+  id : 2
+  userName: srinath
+  email: srinath@abc.com
+  user_type: User
+  encrypted_password: "123456"
+  salt: 1
+
+
+
+

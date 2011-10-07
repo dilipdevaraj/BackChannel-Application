@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+<h1><div id="banner"> <b>Search Results:</b></div> </h1>
+
+<%if @posts.count ==0 %>
+    <b> No search hits </b>
+<%end%>
+
+<%if @posts%>
+
+    <% @posts.each do |post| %>
+
+
+          <div class="question1 c5 stale" align="left">
+
+            <br />
+            <b><%= post.user.userName %> </b> :
+            <%= link_to post.description, post%>
+          </div>
+
+    <%end%>
+<%end%>
+
+
+</p>
+

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<h1><%= @pagetitle%></h1>
+
+<% flash.each do |key, value| %>
+    <div class="flash <%= key %>"><%= value %></div>
+<% end %>
+
+<%= yield %>
+
+</div>
+</body>
+</html>

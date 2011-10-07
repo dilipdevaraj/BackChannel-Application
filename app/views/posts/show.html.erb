@@ -1,0 +1,29 @@
+<html>
+<h1 div id="banner">Thread Post</h1> </div></br>
+<p id="notice"><%= notice %></p>
+<%puts @post.postId%>
+<%if @post.postId != nil%>
+    <% parent = Post.find_by_id(@post.postId)%>
+    <%puts parent.postId%>
+    <% @post = parent %>
+<%end%>
+
+
+  <div class="question1 c5 stale" align="left">
+<b><%= @post.user.userName %></b>:
+<%= @post.description %>  <br/>
+<i>---posted <%= time_ago_in_words(@post.created_at)%> ago.</i><br/>
+<% Post.find_all_by_postId(@post.id).each do |reply|%>
+    <b><%= reply.user.userName %></b>:
+    <%= reply.description %> <br/>
+    <i>---posted <%= time_ago_in_words(reply.created_at)%> ago.</i><br/>
+
+
+<%end%>
+    </div>
+    <div id=recent1>
+    <p style="text-align: center;">
+    <%= link_to 'Back', posts_path %> </p><br/> </div>
+  </html>
+
+
