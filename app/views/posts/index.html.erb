@@ -1,6 +1,179 @@
-<html>
-<head>
+
+<html> <head>
+  <style>
+
+      .profile {
+          width: 100%;
+          margin-bottom: 0;
+      }
+
+      .main {
+          width: 70%;
+          padding: 1em;
+      }
+
+      .sidebar {
+          width: 30%;
+          padding: 1em;
+          vertical-align: top;
+          background: #ffc;
+      }
+
+      body{  	background: #FFF;
+          color: #000;
+          font: 80% Verdana, Geneva, Helvetica, Arial, sans-serif;}
+
+      a{			color: #007700;}
+      div.votes a {color: white;}
+
+      textarea{		font: 1em "Courier New", monospace;}
+
+      div#nav{		background-color: #007700;
+          float: left;
+          width: 16%;
+          max-width: 16%;
+          margin: 0 1.5% 0 .25%;
+          padding: 4px 0px 10px 10px;
+          font-weight: bold;
+          font-size: 13px;
+          line-height: 140%;
+          overflow: hidden}
+
+      div#nav a{		color:white;}
+
+
+      div#wrapper{	width: 100%;}
+
+      div#recent{  background-color: #f5f5f0;
+          width: 100%;
+          float: left;
+          margin: .5% .5% .5% 0%;
+          border-top: 1px solid #ccc;
+          border-left: 1px solid #ccc;
+          overflow: hidden;}
+      div#recent1{
+          width: 100%;
+          float: left;
+          margin: .5% .5% .5% 0%;
+          overflow: hidden;}
+
+      div#popular{	background-color: #f5f5f0;
+          width: 100%;
+          float: left;
+          margin: .5% .5% .5% 0%;
+          border-top: 1px solid #ccc;
+          border-left: 1px solid #ccc;
+          overflow: hidden;}
+      .table,.th, .td
+      {
+          border: 1px solid black;
+      }
+      .center{  	background-color: #f5f5f0;
+          width: 80%;
+          text-align: left;
+          margin: 0 .5% 0 .5%;
+          border-top: 1px solid #ccc;
+          border-left: 1px solid #ccc;
+          padding: 5px;}
+
+
+      .subcolumn1{ float:left;
+          width: 49%;
+          margin: .5% 0% .5% .5%;
+          overflow: hidden;
+          border-right: 1px solid #ccc}
+
+      .subcolumn{
+          width: 49%;
+          margin: .0% 0% .5% .5%;
+          overflow: hidden;
+          border-right: 1px solid #ccc}
+
+      .subcolumn2{	float: right;
+          width: 49%;
+          overflow: hidden;
+          border-right: 1px solid #ccc}
+      .question{	background-color: white;
+          float: left;
+          width: 96%;
+          margin: .5% 2% .5% 0%;
+          padding: 1%;
+          overflow: auto}
+
+      .question1{	background-color: white;
+          float: left;
+          width: 50%;
+          margin: .5% 2% .5% 0%;
+          padding: 1%;
+          overflow: auto}
+
+      .answer{	background-color: white;
+          float: left;
+          width: 85%;
+          border: 2px solid #00FF00;
+          margin: .5% 2% .5% 5%;
+          padding: 1%;
+          overflow: hidden;}
+
+      .votes{ 	margin: 0px 5px 0px 0px;
+          padding: 2%;
+          float: left;
+          color: #fff;
+          text-align:center;}
+
+
+      .columnhead{text-align: center;
+          font-size: 110%;
+          font-weight: bold;
+          color: #007700;
+          padding: 2px}
+
+      #banner{	color: #fff;
+          background: #007700;
+          height: 34px;
+          font-size: 1.1em;
+          line-height: 2em;
+          display: block;
+          padding-top: 2px;
+          text-indent: 30px;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 24px;}
+
+
+
+      .c0 {	border: 2px solid #000088;}
+      .c1 {	border: 2px solid #0066aa;}
+      .c2 {	border: 2px solid #008888;}
+      .c3 {	border: 2px solid #007700;}
+      .c4 {	border: 2px solid #99aa00;}
+      .c5 {	border: 2px solid #bb7700;}
+      .c6 {	border: 2px solid #cc0000;}
+      .c7,.c8 {  border: 2px solid #ff0044;}
+
+      .vc0 {	background: #000088;
+          border: 2px solid #000088;}
+      .vc1 {	background: #0066aa;
+          border: 2px solid #0066aa;}
+      .vc2 {	background: #008888;
+          border: 2px solid #008888;}
+      .vc3 {	background: #007700;
+          border: 2px solid #007700;}
+      .vc4 {	background: #99aa00;
+          border: 2px solid #99aa00;}
+      .vc5 {	background: #bb7700;
+          border: 2px solid #bb7700;}
+      .vc6 {	background: #cc0000;
+          border: 2px solid #cc0000;}
+      .vc7,.vc8 { background: #ff0044;
+          border: 2px solid #ff0044;}
+
+      .new {color: #993300;}
+      .stale{	color: #999999;}
+  </style>
 </head>
+
 <body>
 
 <div id="banner" align="center">Live Question Tool: CSC517</div><br/>
@@ -10,9 +183,7 @@
     <%= form_tag "posts/search", :method => 'get' do %>
         <p>
         <h2>Search for posts</h2>
-        <div class = >
-          <%= text_field_tag :search, params[:search] %> <br/>
-        </div>
+        <%= text_field_tag :search, params[:search] %> <br/>
         <%= radio_button_tag :search_by, 1, false %>Search by Post
         <%= radio_button_tag :search_by, 2, false %>Search By User<br/>
         <%= submit_tag "Search", :name => nil %>
@@ -25,248 +196,96 @@
 
   <%= link_to 'Post a New Question', :controller => 'posts' ,:action => 'new'  %>
 </div>
-<!--sorting the posts according to the weights-->
-<% sortedpost = Post.find_all_by_postId(nil) %>
-<% sortedpost.each do |post| %>
-    <% vote_post = Vote.find_all_by_post_id(post.id)%>
-    <% vote_count = vote_post.count%>
-    <%time_difference_sec = Time.now.utc - post.created_at %>
-    <%  minutes  = time_difference_sec / 60 %>
-    <% hours = (minutes / 60).to_int %>
-    <%  days  = (hours / 24).to_int %>
-    <% months = (days/30).to_int %>
-    <% years =  (months/12).to_int %>
-    <% score = 0 %>
-
-    <%  if years > 0 %>
-        <%  score = 0 %>
-    <% elsif months > 0 %>
-        <% if months < 3 %>
-            <%  score = 4 %>
-        <% elsif months < 6 %>
-            <%  score = 3 %>
-        <% elsif months < 9 %>
-            <%  score = 2 %>
-        <% elsif months < 12 %>
-            <%  score = 1 %>
-        <%end %>
-    <% elsif days > 0 %>
-        <% if days < 5 %>
-            <%  score = 10 %>
-        <% elsif days < 10 %>
-            <%  score = 9 %>
-        <% elsif days < 15 %>
-            <%  score = 8 %>
-        <% elsif days < 20 %>
-            <%  score = 7 %>
-        <% elsif days < 25 %>
-            <%  score = 6 %>
-        <% elsif days < 31 %>
-            <%  score = 5 %>
-        <% end %>
-    <% elsif hours > 0 %>
-        <% if hours < 4 %>
-            <%  score = 16 %>
-        <% elsif hours < 8 %>
-            <%  score = 15 %>
-        <% elsif hours < 12 %>
-            <%  score = 14 %>
-        <% elsif hours < 16 %>
-            <%  score = 13 %>
-        <% elsif hours < 20 %>
-            <%  score = 12 %>
-        <% elsif hours < 24 %>
-            <%  score = 11 %>
-        <% end %> %>
-    <% elsif minutes > 0 %>
-        <% if minutes < 2 %>
-            <%  score = 30 %>
-        <% elsif minutes < 3 %>
-            <%  score = 29 %>
-        <% elsif minutes < 5 %>
-            <%  score = 28 %>
-        <% elsif minutes < 10 %>
-            <%  score = 27 %>
-        <% elsif minutes < 15 %>
-            <%  score = 26 %>
-        <% elsif minutes < 20 %>
-            <%  score = 25 %>
-        <% elsif minutes < 25 %>
-            <%  score = 24 %>
-        <% elsif minutes < 30 %>
-            <%  score = 23 %>
-        <% elsif minutes < 35 %>
-            <%  score = 22 %>
-        <% elsif minutes < 40 %>
-            <%  score = 21 %>
-        <% elsif minutes < 45 %>
-            <%  score = 20 %>
-        <% elsif minutes < 50 %>
-            <%  score = 19 %>
-        <% elsif minutes < 55 %>
-            <%  score = 18 %>
-        <% elsif minutes < 60 %>
-            <%  score = 17 %>
-        <%end %>
-    <% else %>
-        <%  score = 31 %>
 
 
-    <% end %>
-    <%   post.weight = vote_count * 30 + 70 * score %>
-    <%   post.save %>
 
-<% end %>
+<% @sortedpost.sort!{ |a,b | b.weight <=> a.weight}  %>
 
-<% sortedpost.sort!{ |a,b | b.weight <=> a.weight}  %>
+
 <div id = "recent">
-  <div class="columnhead">    </div>
-  <%for i in (1..2)%>
-      <div class="subcolumn1">
-        <% sortedpost.each do |post| %>
-            <% if post.id%2 == 0 and i==1%>
+  <div class="columnhead"></div>
+  <% @sortedpost.each do |post| %>
+      <div>
+        <%if($current_user!=nil)%>
+            <%if(post.user_id).eql?$current_user.id%>
+                <div class="question c5 stale" align="left">
+                  <div class="votes vc1">
+                    <%= link_to post.votes.count, votes_handle_path(:id =>post.id)%>
+                  </div>
 
-                <%if($current_user!=nil)%>
+                  <b><%= post.user.userName %></b>:
+                  <%= post.description %><br/><br/>
+                  <i>---posted <%= time_ago_in_words(post.created_at)%> ago.</i><br/>
+                  <%= link_to 'Edit', edit_post_path(post) %>
+                  <%= link_to 'Delete',  posts_destroy_path(:id =>post.id) %>
+                  <b align="right"><%= link_to 'Reply', posts_reply_path(:id =>post.id)%></b>
 
-                    <%if(post.user_id).eql?$current_user.id%>
-                        <div class="question c5 stale" align="left">
-                          <div class="votes vc1">
-                            <%= link_to post.votes.count, votes_handle_path(:id =>post.id)%>
-                          </div>
 
-                          <b><%= post.user.userName %></b>:
-                          <%= post.description %><br/><br/>
-                          <i>---posted <%= time_ago_in_words(post.created_at)%> ago.</i><br/>
-                          <%= link_to 'Edit', edit_post_path(post) %>
-                          <%= link_to 'Delete', post, confirm: 'Are you sure?', method: :delete %>
-                          <b align="right"><%= link_to 'Reply', posts_reply_path(:id =>post.id)%></b>
+            <%else%>
+                <div class="question c5 stale" align="left">
+                  <div class="votes vc1">
+                    <%= link_to post.votes.count, votes_handle_path(:id =>post.id)%>
+                  </div>
+                  <b><%= post.user.userName %></b>:
+                  <%= post.description %> <br/><br/>
+                  <i>---posted <%= time_ago_in_words(post.created_at)%> ago.</i><br/>
+                  <b align="right"><%= link_to 'Reply', posts_reply_path(:id =>post.id)%></b>
 
-                    <%else%>
-                        <div class="question c5 stale" align="left">
-                          <div class="votes vc1">
-                            <%= link_to post.votes.count, votes_handle_path(:id =>post.id)%>
-                          </div>
-                          <b><%= post.user.userName %></b>:
-                          <%= post.description %> <br/><br/>
-                          <i>---posted <%= time_ago_in_words(post.created_at)%> ago.</i><br/>
-                          <b align="right"><%= link_to 'Reply', posts_reply_path(:id =>post.id)%></b>
+                  <%if $current_user.user_type == "Admin"%>
+                      <%= link_to 'Delete',  posts_destroy_path(:id =>post.id) %>
+                  <%end%>
 
-                          <%if $current_user.user_type == "Admin"%>
-                              <%= link_to 'Delete', post, confirm: 'Are you sure?', method: :delete %>
-                          <%end%>
+            <%end%>
+            <br/>
+            <% Post.find_all_by_postId(post.id).each do |reply|%>
+                <br/>
+                <div class="votes vc3">
+                  <%= link_to reply.votes.count, votes_handle_path(:id =>reply.id)%>
+                </div>
+                <b><%= reply.user.userName %></b>:
+                <%= reply.description %> <br/><br/>
+                <i>---posted <%= time_ago_in_words(reply.created_at)%> ago.</i><br/>
+                <%if reply.user.id == $current_user.id%>
+                    <%= link_to 'Edit', edit_post_path(reply) %>
+                    <%= link_to 'Delete', posts_destroy_path(:id => reply.id)%>
 
-                    <%end%>
-
-                    <br/>
-
-                    <% Post.find_all_by_postId(post.id).each do |reply|%>
-                        <br/>
-                        <b><%= reply.user.userName %></b>:
-                        <%= reply.description %> <br/><br/>
-                        <i>---posted <%= time_ago_in_words(reply.created_at)%> ago.</i><br/>
-                        <%if reply.user.id == $current_user.id%>
-                            <%= link_to 'Edit', edit_post_path(reply) %>
-                            <%= link_to 'Delete', reply, confirm: 'Are you sure?', method: :delete %>
-                            <b align="right"><%= link_to 'Vote', votes_handle_path(:id =>reply.id)%>:</b>
-                            <b><%= reply.votes.count%></b>
-                        <%else%>
-                            <b align="right"><%= link_to 'Vote', votes_handle_path(:id =>reply.id)%>:</b>
-                            <b><%= reply.votes.count%></b>
-                            <%if $current_user.user_type == "Admin"%>
-                                <%= link_to 'Delete', reply, confirm: 'Are you sure?', method: :delete %>
-                            <%end%>
-                        <%end%>
-                    <%end%>
-                    </div>
 
                 <%else%>
 
-                    <p class="question c5 stale " align="left">
-                      <%= post.user.userName %>:
-                      <%= post.description %>  <br/>
-                      <i>---posted <%= time_ago_in_words(post.created_at)%> ago.</i><br/>
-                      <% Post.find_all_by_postId(post.id).each do |reply|%>
-                          <b><%= reply.user.userName %></b>:
-                          <%= reply.description %> <br/>
-                          <i>---posted <%= time_ago_in_words(reply.created_at)%> ago.</i><br/>
 
-                      <%end%>
-                    </p>
-                    <
-                <%end%>
-            <%elsif post.id%2 == 1 and i==2%>
-
-                <%if($current_user!=nil)%>
-
-                    <%if(post.user_id).eql?$current_user.id%>
-                        <div class="question c4 stale " align="left">
-                          <div class="votes vc1">
-                            <%= link_to post.votes.count, votes_handle_path(:id =>post.id)%>
-                          </div>
-                          <b><%= post.user.userName %></b>:
-                          <%= post.description %><br/><br/>
-                          <i>---posted <%= time_ago_in_words(post.created_at)%> ago.</i><br/>
-                          <%= link_to 'Edit', edit_post_path(post) %>
-                          <%= link_to 'Delete', post, confirm: 'Are you sure?', method: :delete %>
-                          <b align="right"><%= link_to 'Reply', posts_reply_path(:id =>post.id)%></b>
-
-                    <%else%>
-                        <div class="question c4 stale" align="left">
-                          <div class="votes vc1">
-                            <%= link_to post.votes.count, votes_handle_path(:id =>post.id)%>
-                          </div>
-                          <b><%= post.user.userName %></b>:
-                          <%= post.description %> <br/><br/>
-                          <i>---posted <%= time_ago_in_words(post.created_at)%> ago.</i><br/>
-                          <b align="right"><%= link_to 'Reply', posts_reply_path(:id =>post.id)%></b>
-
-                          <%if $current_user.user_type == "Admin"%>
-                              <%= link_to 'Delete', post, confirm: 'Are you sure?', method: :delete %>
-                          <%end%>
-
+                    <%if $current_user.user_type == "Admin"%>
+                        <%= link_to 'Delete',   posts_destroy_path(:id =>reply.id) %>
                     <%end%>
-
-                    <br/>
-
-                    <% Post.find_all_by_postId(post.id).each do |reply|%>
-                        <br/>
-                        <b><%= reply.user.userName %></b>:
-                        <%= reply.description %> <br/><br/>
-                        <i>---posted <%= time_ago_in_words(reply.created_at)%> ago.</i><br/>
-                        <%if reply.user.id == $current_user.id%>
-                            <%= link_to 'Edit', edit_post_path(reply) %>
-                            <%= link_to 'Delete', reply, confirm: 'Are you sure?', method: :delete %>
-                            <b align="right"><%= link_to 'Vote', votes_handle_path(:id =>reply.id)%>:</b>
-                            <b><%= reply.votes.count%></b>
-                        <%else%>
-                            <b align="right"><%= link_to 'Vote', votes_handle_path(:id =>reply.id)%>:</b>
-                            <b><%= reply.votes.count%></b>
-                            <%if $current_user.user_type == "Admin"%>
-                                <%= link_to 'Delete', reply, confirm: 'Are you sure?', method: :delete %>
-                            <%end%>
-                        <%end%>
-                    <%end%>
-                    </div>
-
-                <%else%>
-
-                    <p class="question c4 stale " align="left">
-                      <b><%= post.user.userName %></b>:
-                      <%= post.description %>  <br/>
-                      <i>---posted <%= time_ago_in_words(post.created_at)%> ago.</i><br/>
-                      <% Post.find_all_by_postId(post.id).each do |reply|%>
-                          <b><%= reply.user.userName %></b>:
-                          <%= reply.description %> <br/>
-                          <i>---posted <%= time_ago_in_words(reply.created_at)%> ago.</i><br/>
-
-                      <%end%>
-                    </p>
                 <%end%>
             <%end%>
-        <% end %>
+            </div>
+        <%else%>
+
+            <div class="question c5 stale " align="left">
+              <div class="votes vc1">
+                <!--<%= link_to post.votes.count, votes_handle_path(:id =>post.id)%>-->
+                <%= post.votes.count%>
+              </div>
+              <%= post.user.userName %>:
+              <%= post.description %>  <br/>
+              <i>---posted <%= time_ago_in_words(post.created_at)%> ago.</i><br/>
+              <% Post.find_all_by_postId(post.id).each do |reply|%>
+                  <div class="votes vc3">
+                    <%= reply.votes.count%>
+                  </div>
+                  <b><%= reply.user.userName %></b>:
+                  <%= reply.description %> <br/>
+                  <i>---posted <%= time_ago_in_words(reply.created_at)%> ago.</i><br/>
+
+              <%end%>
+            </div>
+        <%end%>
         </div>
   <%end%>
+
   </div>
+
+
 
   <p style="text-align: center;">
     <%if($current_user.nil? )%>
@@ -283,7 +302,8 @@
         <%end%>
     <%end%>
   </p>
-  </body>
+
+</body>
 
 
 </html>
